@@ -150,13 +150,13 @@ nav a.active-nav {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items:end;
   min-width: 150px;
 }
 
 .story-image img {
-  width: 100px;
-  height: auto;
+  width: 200px;
+  height: 200px;
 }
 
 /* Features Section */
