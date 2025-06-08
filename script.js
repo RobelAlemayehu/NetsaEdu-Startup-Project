@@ -189,23 +189,17 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
 
   if (!name || !email) {
     showPopup("Please fill out all required fields.", "error");
     return;
   }
 
+  // Simulate success
   showPopup(`Thank you, ${name}! Your message has been sent.`, "success");
+
+  // Clear form
   this.reset();
 });
 
-// === Footer icons hover interactivity (optional visual effect) ===
-document.querySelectorAll('.footer-icon').forEach(icon => {
-  icon.addEventListener('mouseover', () => {
-    icon.style.opacity = '0.7';
-  });
-
-  icon.addEventListener('mouseout', () => {
-    icon.style.opacity = '1';
-  });
-});
