@@ -11,37 +11,43 @@ document.querySelectorAll('nav a').forEach(link => {
 
 // CTA button press animation + alert
 const ctaBtn = document.querySelector('.cta-button');
-ctaBtn.addEventListener('click', () => {
-  ctaBtn.classList.add('pressed');
-  setTimeout(() => {
-    ctaBtn.classList.remove('pressed');
-    alert('Let’s get you started! 🚀');
-    console.log('User clicked: Get Started');
-  }, 200);
-});
+if (ctaBtn) {
+  ctaBtn.addEventListener('click', () => {
+    ctaBtn.classList.add('pressed');
+    setTimeout(() => {
+      ctaBtn.classList.remove('pressed');
+      alert('Let’s get you started!');
+      console.log('User clicked: Get Started');
+    }, 200);
+  });
+}
 
 // Ticker pause on hover
 const ticker = document.querySelector('.ticker');
 const tickerWrap = document.querySelector('.ticker-wrap');
-tickerWrap.addEventListener('mouseover', () => {
-  ticker.style.animationPlayState = 'paused';
-});
-tickerWrap.addEventListener('mouseout', () => {
-  ticker.style.animationPlayState = 'running';
-});
+if (ticker && tickerWrap) {
+  tickerWrap.addEventListener('mouseover', () => {
+    ticker.style.animationPlayState = 'paused';
+  });
+  tickerWrap.addEventListener('mouseout', () => {
+    ticker.style.animationPlayState = 'running';
+  });
+}
 
 // Fun fact toggle in story section
 const storySection = document.querySelector('.story-text');
-const funFact = document.createElement('p');
-funFact.textContent = '🎓 Fun Fact: The first version of NetsaEDU was built in a dorm room!';
-funFact.style.display = 'none';
-funFact.style.marginTop = '10px';
-funFact.style.fontStyle = 'italic';
-funFact.style.color = '#395886';
-storySection.appendChild(funFact);
-storySection.addEventListener('click', () => {
-  funFact.style.display = funFact.style.display === 'none' ? 'block' : 'none';
-});
+if (storySection) {
+  const funFact = document.createElement('p');
+  funFact.textContent = '🎓 Fun Fact: The first version of NetsaEDU was built in a dorm room!';
+  funFact.style.display = 'none';
+  funFact.style.marginTop = '10px';
+  funFact.style.fontStyle = 'italic';
+  funFact.style.color = '#395886';
+  storySection.appendChild(funFact);
+  storySection.addEventListener('click', () => {
+    funFact.style.display = funFact.style.display === 'none' ? 'block' : 'none';
+  });
+}
 
 // Feature hover and click log
 document.querySelectorAll('.feature-box').forEach(box => {
@@ -53,8 +59,10 @@ document.querySelectorAll('.feature-box').forEach(box => {
     box.style.transform = 'scale(1)';
   });
   box.addEventListener('click', () => {
-    const feature = box.querySelector('h3').textContent;
-    console.log(`User is interested in: ${feature}`);
+    const feature = box.querySelector('h3')?.textContent;
+    if (feature) {
+      console.log(`User is interested in: ${feature}`);
+    }
   });
 });
 
@@ -71,9 +79,9 @@ navLinks.forEach(link => {
 const header = document.querySelector('header');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
-    header.classList.add('sticky');
+    header?.classList.add('sticky');
   } else {
-    header.classList.remove('sticky');
+    header?.classList.remove('sticky');
   }
 
   // Scroll Spy: highlight current section in nav
@@ -86,7 +94,7 @@ window.addEventListener('scroll', () => {
     if (top >= offset && top < offset + height) {
       navLinks.forEach(link => {
         link.classList.remove('active-nav');
-        if (link.getAttribute('href').includes(id)) {
+        if (id && link.getAttribute('href').includes(id)) {
           link.classList.add('active-nav');
         }
       });
@@ -96,8 +104,8 @@ window.addEventListener('scroll', () => {
 
 // Hamburger menu toggle for mobile
 const mobileNav = document.querySelector('.hamburger');
-mobileNav.addEventListener('click', () => {
-  document.querySelector('.nav-links').classList.toggle('show');
+mobileNav?.addEventListener('click', () => {
+  document.querySelector('.nav-links')?.classList.toggle('show');
 });
 
 // Flip testimonial on hover (no click)
@@ -108,4 +116,27 @@ document.querySelectorAll('.testimonial').forEach(card => {
   card.addEventListener('mouseleave', () => {
     card.classList.remove('expanded');
   });
+});
+
+// FAQ toggle functionality
+document.querySelectorAll(".faq-question").forEach(button => {
+  button.addEventListener("click", () => {
+    const answer = button.nextElementSibling;
+    if (answer) {
+      answer.style.display = answer.style.display === "block" ? "none" : "block";
+    }
+  });
+});
+
+// Team member image interaction
+document.querySelectorAll(".member").forEach(member => {
+  const name = member.querySelector("h4")?.textContent;
+  const role = member.querySelector("p")?.textContent;
+  const img = member.querySelector("img");
+
+  if (img && name && role) {
+    img.addEventListener("click", () => {
+      alert(`${name}: ${role}`);
+    });
+  }
 });

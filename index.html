@@ -14,16 +14,16 @@
           <img src="assets/images/logo.png" alt="NetsaEDU Logo" />
         </div>
         <nav class="nav-links">
-          <a href="#" class="nav-item">HOME</a>
-          <a href="#" class="nav-item">ABOUT</a>
-          <a href="#" class="nav-item">SERVICE</a>
+          <a href="#hero" class="nav-item">HOME</a>
+          <a href="#our-story" class="nav-item">ABOUT</a>
+          <a href="#features" class="nav-item">SERVICE</a>
         </nav>
         <div class="hamburger">&#9776;</div>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
       <h1>NetsaEdu</h1>
       <p>
         When access meets opportunity, even the smallest<br />
@@ -33,19 +33,14 @@
     </section>
 
     <!-- Our Story Section -->
-    <section class="our-story">
+    <section class="our-story" id="our-story">
       <div class="story-text">
         <h2>Our story</h2>
         <p>
           NetsaEdu was founded by Robel Alemayehu, a second-year Software
           Engineering student at Addis Ababa University. During his first year,
           Robel found it difficult to access reliable study guides and past
-          exams. After talking to classmates and high school peers, he realised
-          this was a shared problem across Ethiopia. This inspired him to build
-          a centralized, free platform where students can find academic
-          resources, upload their own, and help each other succeed. What began
-          as a small idea has now become a growing student-powered learning
-          movement.
+          exams...
         </p>
       </div>
       <div class="story-image">
@@ -54,7 +49,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section class="features" id="features">
       <div class="feature-box">
         <h3>Exam Vault</h3>
         <img
@@ -96,23 +91,24 @@
       </div>
     </div>
 
-    <!-- Testimonials Section with Flip Cards -->
+    <!-- Testimonials -->
     <section class="testimonials">
       <h2>Testimonial</h2>
       <div class="testimonial-cards">
+        <!-- Card 1 -->
         <div class="testimonial">
           <div class="testimonial-inner">
             <div class="testimonial-front">
               <img
                 src="assets/images/natnael.jpg"
-                alt="Student Photo"
+                alt="Natnael"
                 class="avatar"
               />
               <p>
                 “Thanks to the organized exam library, I could prepare better
                 and feel more confident!”
               </p>
-              <p class="author">– Natnael Arega, University Student</p>
+              <p class="author">– Natnael Arega</p>
             </div>
             <div class="testimonial-back">
               <p>
@@ -123,19 +119,20 @@
             </div>
           </div>
         </div>
+        <!-- Card 2 -->
         <div class="testimonial">
           <div class="testimonial-inner">
             <div class="testimonial-front">
               <img
                 src="assets/images/betelhem.jpg"
-                alt="Student Photo"
+                alt="Betelhem"
                 class="avatar"
               />
               <p>
                 “NetsaEDU helped me finally understand Chemistry with notes from
-                older students. It’s like a secret weapon for exams!”
+                older students.”
               </p>
-              <p class="author">– Betelhem Degsew, Grade 12 Student</p>
+              <p class="author">– Betelhem Degsew</p>
             </div>
             <div class="testimonial-back">
               <p>
@@ -149,6 +146,75 @@
       </div>
     </section>
 
+    <!-- Team Section -->
+    <section class="team-section">
+      <h2>Meet the Team</h2>
+      <div class="team-members">
+        <div class="member">
+          <img src="assets/images/Robel.JPG" alt="Robel Alemayehu" />
+          <h4>Robel Alemayehu</h4>
+          <p>Founder and Fullstack Developer</p>
+        </div>
+        <div class="member">
+          <img src="assets/images/ephrata.jpg" alt="Ephrata Yohannes" />
+          <h4>Ephrata Yohannes</h4>
+          <p>Content Manager</p>
+        </div>
+        <div class="member">
+          <img src="assets/images/mahder.jpg" alt="Mahder Hawas" />
+          <h4>Mahder Hawaz</h4>
+          <p>Outreach Lead</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq">
+        <button class="faq-question">Is NetsaEdu free to use?</button>
+        <div class="faq-answer">
+          <p>
+            Yes! NetsaEdu is completely free for all students and educators. We
+            believe that quality learning resources should be accessible to
+            everyone, so you can browse, download, and share materials without
+            paying a single cent.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">
+          Can I ask questions and get answers quickly on AskZone?
+        </button>
+        <div class="faq-answer">
+          <p>
+            Absolutely! AskZone is designed for fast peer-to-peer support. Once
+            you post your academic question, other students or tutors will see
+            it and respond as soon as possible. You can also upvote helpful
+            answers to highlight the best solutions for everyone.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">
+          How do I upload study materials to NetsaEdu?
+        </button>
+        <div class="faq-answer">
+          <p>
+            To upload study materials, first create a free account on EduRoot.
+            Once logged in, go to the StudyTree section and click the “Upload”
+            button. You can add PDFs, notes, or flashcards along with a title
+            and description. After review by our content team, your materials
+            will be published and shared with the community!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Script -->
     <script src="script.js"></script>
   </body>
 </html>
