@@ -140,3 +140,72 @@ document.querySelectorAll(".member").forEach(member => {
     });
   }
 });
+// === Helper: Show popup message ===
+function showPopup(message, type = "success") {
+  const popup = document.createElement("div");
+  popup.className = `popup ${type}`;
+  popup.innerText = message;
+
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.classList.add("show");
+  }, 10);
+
+  setTimeout(() => {
+    popup.classList.remove("show");
+    setTimeout(() => {
+      if (popup.parentNode) {
+        popup.parentNode.removeChild(popup);
+      }
+    }, 300);
+  }, 3000);
+}
+
+// === Chatbot toggle logic ===
+const chatbotToggle = document.querySelector(".chatbot-toggle");
+const chatbotContainer = document.querySelector(".chatbot-floating-container");
+
+chatbotToggle.addEventListener("click", () => {
+  chatbotContainer.classList.toggle("visible");
+});
+
+// === Chatbot submit handler ===
+document.querySelector(".chatbot-submit").addEventListener("click", () => {
+  const input = document.getElementById("chatbot-input");
+  const question = input.value.trim();
+
+  if (question) {
+    showPopup(`NestaBot received: "${question}"`, "success");
+    input.value = "";
+  } else {
+    showPopup("Please type a question.", "error");
+  }
+});
+
+// === Contact form submission handler ===
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  if (!name || !email) {
+    showPopup("Please fill out all required fields.", "error");
+    return;
+  }
+
+  showPopup(`Thank you, ${name}! Your message has been sent.`, "success");
+  this.reset();
+});
+
+// === Footer icons hover interactivity (optional visual effect) ===
+document.querySelectorAll('.footer-icon').forEach(icon => {
+  icon.addEventListener('mouseover', () => {
+    icon.style.opacity = '0.7';
+  });
+
+  icon.addEventListener('mouseout', () => {
+    icon.style.opacity = '1';
+  });
+});

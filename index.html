@@ -37,14 +37,15 @@
       <div class="story-text">
         <h2>Our story</h2>
         <p>
-          NetsaEdu was founded by Robel Alemayehu, a second-year Software
-          Engineering student at Addis Ababa University. During his first year,
-          Robel found it difficult to access reliable study guides and past
-          exams...
+          NetsaEDU was founded by Robel Alemayehu, a second-year Software Engineering student at Addis Ababa University. 
+          During his first year, Robel found it difficult to access reliable study guides and past exams. 
+          After talking to classmates and high school peers, he realized this was a shared problem across Ethiopia. 
+          This inspired him to build a centralized, free platform where students can find academic resources, upload their own, and help each other succeed.
+           What began as a small idea has now become a growing student-powered learning movement.
         </p>
       </div>
       <div class="story-image">
-        <img src="assets/images/book.png" alt="Book Icon" />
+        <img src="assets/icons/book.png" alt="Book Icon" />
       </div>
     </section>
 
@@ -53,7 +54,7 @@
       <div class="feature-box">
         <h3>Exam Vault</h3>
         <img
-          src="assets/images/examVault.png"
+          src="assets/icons/examVault.png"
           alt="Exam Vault Icon"
           class="feature-icon"
         />
@@ -73,7 +74,7 @@
       <div class="feature-box">
         <h3>Ask Zone</h3>
         <img
-          src="assets/images/ask.png"
+          src="assets/icons/ask.png"
           alt="Ask Zone Icon"
           class="feature-icon"
         />
@@ -213,6 +214,77 @@
         </div>
       </div>
     </section>
+    <!-- Floating Chatbot Button -->
+    <button class="chatbot-toggle">Ask NestaBot</button>
+
+    <!-- Floating Chatbot Container -->
+    <div class="chatbot-floating-container">
+      <p class="chatbot-prompt">What can I help you?</p>
+      <div class="chatbot-input-container">
+        <input type="text" placeholder="Ask a question..." id="chatbot-input" />
+        <button class="chatbot-submit">&#8594;</button>
+      </div>
+    </div>
+
+    <!-- Contact Form section -->
+    <section class="contact-section">
+      <h2>Contact us</h2>
+      <form id="contact-form">
+        <label for="name">Name <span class="required">*</span></label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter your name..."
+          required
+        />
+
+        <label for="email">Email <span class="required">*</span></label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email..."
+          required
+        />
+
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Type something..."
+        ></textarea>
+
+        <button type="submit" class="send-button">Send</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="privacy">Privacy and policy</p>
+      <div class="footer-icons">
+        <a href="mailto:info@nestaedu.com" class="footer-icon" title="Email Us">
+          <img src="assets/icons/email.png" alt="Email" />
+        </a>
+        <a
+          href="https://www.facebook.com/nestaedu"
+          class="footer-icon"
+          target="_blank"
+          title="Visit our Facebook"
+        >
+       
+          <img src="assets/icons/facebook.svg" alt="Facebook" />
+            <a
+          href="https://www.linkedin.com/nestaedu"
+          class="footer-icon"
+          target="_blank"
+          title="Visit our Facebook"
+        >
+          <img src="assets/icons/linkedin.svg" alt="linkedin" />
+        </a>
+      </div>
+      <p class="copyright">NestaEdu © 2025. All rights reserved.</p>
+    </footer>
 
     <!-- Script -->
     <script src="script.js"></script>
