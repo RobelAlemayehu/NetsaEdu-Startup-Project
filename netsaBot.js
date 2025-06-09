@@ -13,14 +13,14 @@ const chatbotSubmit = document.querySelector(".chatbot-submit");
 const chatbotResponse = document.getElementById("chatbot-response");
 
 const responses = [
-  { keywords: ['founder', 'who founded'], response: "NetsaEDU was founded by Robel Alemayehu, a student at Addis Ababa University." },
-  { keywords: ['what is netsaedu', 'about netsaedu'], response: "NetsaEDU is a student-built platform providing free access to past exams, study notes, and peer support." },
+  { keywords: ['founder', 'who founded'], response: "NetsaEdu was founded by Robel Alemayehu, a student at Addis Ababa University." },
+  { keywords: ['what is NetsaEdu', 'about NetsaEdu'], response: "NetsaEdu is a student-built platform providing free access to past exams, study notes, and peer support." },
   { keywords: ['products', 'services'], response: "We offer ExamVault (past exams), StudyTree (notes sharing), and a student community." },
   { keywords: ['mission'], response: "Our mission is to empower Ethiopian students with free academic resources and support." },
   { keywords: ['join', 'partners'], response: "Teachers, schools, NGOs, and media partners can join us to support students." },
   { keywords: ['vision'], response: "Our vision is a future where every Ethiopian student has equal access to learning tools and success." },
-  { keywords: ['hello', 'hi'], response: "Hello! How can I assist you with NetsaEDU today?" },
-  { keywords: ['help'], response: "Ask me anything about NetsaEDU — founders, mission, products, or how to join!" },
+  { keywords: ['hello', 'hi'], response: "Hello! How can I assist you with NetsaEdu today?" },
+  { keywords: ['help'], response: "Ask me anything about NetsaEdu — founders, mission, products, or how to join!" },
   { keywords: ['joke'], response: "Why do programmers prefer dark mode? Because light attracts bugs!" }
 ];
 

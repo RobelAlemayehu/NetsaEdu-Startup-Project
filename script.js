@@ -45,7 +45,7 @@ if (ticker && tickerWrap) {
 const storySection = document.querySelector('.story-text');
 if (storySection) {
   const funFact = document.createElement('p');
-  funFact.textContent = '🎓 Fun Fact: The first version of NetsaEDU was built in a dorm room!';
+  funFact.textContent = '🎓 Fun Fact: The first version of NetsaEdu was built in a dorm room!';
   funFact.style.display = 'none';
   funFact.style.marginTop = '10px';
   funFact.style.fontStyle = 'italic';
