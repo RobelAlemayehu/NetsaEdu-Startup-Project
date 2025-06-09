@@ -140,6 +140,7 @@ document.querySelectorAll(".member").forEach(member => {
     });
   }
 });
+
 // === Helper: Show popup message ===
 function showPopup(message, type = "success") {
   const popup = document.createElement("div");
@@ -163,25 +164,74 @@ function showPopup(message, type = "success") {
 }
 
 // === Chatbot toggle logic ===
-const chatbotToggle = document.querySelector(".chatbot-toggle");
+const chatbotToggles = document.querySelectorAll(".chatbot-toggle");
 const chatbotContainer = document.querySelector(".chatbot-floating-container");
 
-chatbotToggle.addEventListener("click", () => {
-  chatbotContainer.classList.toggle("visible");
+chatbotToggles.forEach(toggle => {
+  toggle.addEventListener("click", () => {
+    chatbotContainer.classList.toggle("visible");
+  });
 });
 
-// === Chatbot submit handler ===
-document.querySelector(".chatbot-submit").addEventListener("click", () => {
-  const input = document.getElementById("chatbot-input");
-  const question = input.value.trim();
+// === Chatbot AI Logic ===
+const chatbotInput = document.getElementById("chatbot-input");
+const chatbotSubmit = document.querySelector(".chatbot-submit");
+const chatbotResponse = document.getElementById("chatbot-response");
 
-  if (question) {
-    showPopup(`NestaBot received: "${question}"`, "success");
-    input.value = "";
-  } else {
+function getNestaBotResponse(question) {
+  const q = question.toLowerCase();
+
+  if (!q) return "Please type a question!";
+
+  if (q.includes("who founded") || q.includes("founder")) {
+    return "NetsaEDU was founded by Robel Alemayehu, a student at Addis Ababa University.";
+  }
+  if (q.includes("what is netsaedu") || q.includes("about netsaedu")) {
+    return "NetsaEDU is a student-built platform providing free access to past exams, study notes, and peer support.";
+  }
+  if (q.includes("products") || q.includes("services")) {
+    return "We offer ExamVault (past exams), StudyTree (notes sharing), and a student community.";
+  }
+  if (q.includes("mission")) {
+    return "Our mission is to empower Ethiopian students with free academic resources and support.";
+  }
+  if (q.includes("join") || q.includes("partners")) {
+    return "Teachers, schools, NGOs, and media partners can join us to support students.";
+  }
+  if (q.includes("vision")) {
+    return "Our vision is a future where every Ethiopian student has equal access to learning tools and success.";
+  }
+  if (q.includes("hello") || q.includes("hi")) {
+    return "Hello! How can I assist you with NetsaEDU today?";
+  }
+  if (q.includes("help")) {
+    return "Ask me anything about NetsaEDU — founders, mission, products, or how to join!";
+  }
+
+  return "Sorry, I’m not sure how to answer that yet. Try asking about our mission, products, or founders.";
+}
+
+function handleChatbotSubmit() {
+  const question = chatbotInput.value.trim();
+  if (!question) {
     showPopup("Please type a question.", "error");
+    return;
+  }
+  chatbotResponse.textContent = "Typing...";
+  setTimeout(() => {
+    const answer = getNestaBotResponse(question);
+    chatbotResponse.textContent = answer;
+  }, 600); 
+  chatbotInput.value = "";
+}
+
+chatbotSubmit.addEventListener("click", handleChatbotSubmit);
+chatbotInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    handleChatbotSubmit();
   }
 });
+
 // Back to Top Button
 const backToTopButton = document.getElementById("back-to-top");
 
@@ -219,6 +269,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
   // Clear form
   this.reset();
 });
+
 // --- Visitor Counter ---
 const visitCountEl = document.getElementById('visit-count');
 if (visitCountEl) {
@@ -230,7 +281,7 @@ if (visitCountEl) {
 
 // --- Audience Toggle Switch ---
 const btnHigh = document.getElementById('toggle-high');
-const btnUni = document.getElementById('toggle-uni');
+const btnUni = document.getElementById('toggle-uni'); 
 const highContent = document.getElementById('high-content');
 const uniContent = document.getElementById('uni-content');
 
@@ -241,30 +292,28 @@ if (btnHigh && btnUni && highContent && uniContent) {
       btnUni.classList.remove('active');
       highContent.classList.add('active');
       uniContent.classList.remove('active');
-
-      // Swap display after transition
-      highContent.style.display = 'block';
+      // Delay hiding uniContent for smooth fade out
       setTimeout(() => {
         uniContent.style.display = 'none';
+        highContent.style.display = 'block';
       }, 400);
     } else {
       btnUni.classList.add('active');
       btnHigh.classList.remove('active');
       uniContent.classList.add('active');
       highContent.classList.remove('active');
-
-      uniContent.style.display = 'block';
+      // Delay hiding highContent for smooth fade out
       setTimeout(() => {
         highContent.style.display = 'none';
+        uniContent.style.display = 'block';
       }, 400);
     }
   }
 
-  // Initial state
+  // Initialize content display block
   highContent.style.display = 'block';
   uniContent.style.display = 'none';
 
   btnHigh.addEventListener('click', () => toggleAudience(true));
   btnUni.addEventListener('click', () => toggleAudience(false));
 }
-

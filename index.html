@@ -254,15 +254,30 @@
       device.
     </div>
 
-    <!-- Floating Chatbot Button -->
-    <button class="chatbot-toggle">Ask NestaBot</button>
+    <!-- Floating Chatbot Toggle Button (to open chatbot) -->
+    <button class="chatbot-toggle chatbot-icon">Ask NestaBot</button>
 
     <!-- Floating Chatbot Container -->
     <div class="chatbot-floating-container">
-      <p class="chatbot-prompt">What can I help you?</p>
-      <div class="chatbot-input-container">
-        <input type="text" placeholder="Ask a question..." id="chatbot-input" />
-        <button class="chatbot-submit">&#8594;</button>
+      <div class="chatbot-messages">
+        <div id="chatbot-response"></div>
+      </div>
+
+      <div class="chatbot-header">
+        <h4>NestaBot</h4>
+        <!-- Close chatbot button -->
+        <button class="chatbot-toggle">✖</button>
+      </div>
+
+      <div class="chatbot-body">
+        <div class="chatbot-input-area chatbot-input-container">
+          <input
+            type="text"
+            id="chatbot-input"
+            placeholder="Ask a question..."
+          />
+          <button class="chatbot-submit">&#8594;</button>
+        </div>
       </div>
     </div>
 
