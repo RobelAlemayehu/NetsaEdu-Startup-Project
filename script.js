@@ -1,12 +1,19 @@
-// Smooth scroll for nav links
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', function (e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
+// Smooth scroll + active nav link using event delegation
+const nav = document.querySelector('nav');
+const navLinks = document.querySelectorAll('nav a');
+
+nav?.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') {
+    e.preventDefault();
+
+    // Smooth scroll
+    const target = document.querySelector(e.target.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+
+    // Active nav link highlight
+    navLinks.forEach(link => link.classList.remove('active-nav'));
+    e.target.classList.add('active-nav');
+  }
 });
 
 // CTA button press animation + alert
@@ -66,16 +73,7 @@ document.querySelectorAll('.feature-box').forEach(box => {
   });
 });
 
-// Highlight active nav link on click
-const navLinks = document.querySelectorAll('nav a');
-navLinks.forEach(link => {
-  link.addEventListener('click', function () {
-    navLinks.forEach(l => l.classList.remove('active-nav'));
-    this.classList.add('active-nav');
-  });
-});
-
-// Sticky nav and background fade on scroll
+// Sticky nav and background fade on scroll + Scroll Spy for current section highlight
 const header = document.querySelector('header');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
@@ -84,9 +82,9 @@ window.addEventListener('scroll', () => {
     header?.classList.remove('sticky');
   }
 
-  // Scroll Spy: highlight current section in nav
+  // Scroll Spy
+  const top = window.scrollY;
   document.querySelectorAll('section').forEach(section => {
-    const top = window.scrollY;
     const offset = section.offsetTop - 100;
     const height = section.offsetHeight;
     const id = section.getAttribute('class');
@@ -118,12 +116,20 @@ document.querySelectorAll('.testimonial').forEach(card => {
   });
 });
 
-// FAQ toggle functionality
+// FAQ toggle functionality with keyboard accessibility
 document.querySelectorAll(".faq-question").forEach(button => {
+  button.setAttribute('tabindex', 0); // make focusable
   button.addEventListener("click", () => {
     const answer = button.nextElementSibling;
     if (answer) {
       answer.style.display = answer.style.display === "block" ? "none" : "block";
+      button.setAttribute('aria-expanded', answer.style.display === "block");
+    }
+  });
+  button.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      button.click();
     }
   });
 });
@@ -141,7 +147,7 @@ document.querySelectorAll(".member").forEach(member => {
   }
 });
 
-// === Helper: Show popup message ===
+//  Helper: Show popup message
 function showPopup(message, type = "success") {
   const popup = document.createElement("div");
   popup.className = `popup ${type}`;
@@ -163,75 +169,6 @@ function showPopup(message, type = "success") {
   }, 3000);
 }
 
-// === Chatbot toggle logic ===
-const chatbotToggles = document.querySelectorAll(".chatbot-toggle");
-const chatbotContainer = document.querySelector(".chatbot-floating-container");
-
-chatbotToggles.forEach(toggle => {
-  toggle.addEventListener("click", () => {
-    chatbotContainer.classList.toggle("visible");
-  });
-});
-
-// === Chatbot AI Logic ===
-const chatbotInput = document.getElementById("chatbot-input");
-const chatbotSubmit = document.querySelector(".chatbot-submit");
-const chatbotResponse = document.getElementById("chatbot-response");
-
-function getNestaBotResponse(question) {
-  const q = question.toLowerCase();
-
-  if (!q) return "Please type a question!";
-
-  if (q.includes("who founded") || q.includes("founder")) {
-    return "NetsaEDU was founded by Robel Alemayehu, a student at Addis Ababa University.";
-  }
-  if (q.includes("what is netsaedu") || q.includes("about netsaedu")) {
-    return "NetsaEDU is a student-built platform providing free access to past exams, study notes, and peer support.";
-  }
-  if (q.includes("products") || q.includes("services")) {
-    return "We offer ExamVault (past exams), StudyTree (notes sharing), and a student community.";
-  }
-  if (q.includes("mission")) {
-    return "Our mission is to empower Ethiopian students with free academic resources and support.";
-  }
-  if (q.includes("join") || q.includes("partners")) {
-    return "Teachers, schools, NGOs, and media partners can join us to support students.";
-  }
-  if (q.includes("vision")) {
-    return "Our vision is a future where every Ethiopian student has equal access to learning tools and success.";
-  }
-  if (q.includes("hello") || q.includes("hi")) {
-    return "Hello! How can I assist you with NetsaEDU today?";
-  }
-  if (q.includes("help")) {
-    return "Ask me anything about NetsaEDU — founders, mission, products, or how to join!";
-  }
-
-  return "Sorry, I’m not sure how to answer that yet. Try asking about our mission, products, or founders.";
-}
-
-function handleChatbotSubmit() {
-  const question = chatbotInput.value.trim();
-  if (!question) {
-    showPopup("Please type a question.", "error");
-    return;
-  }
-  chatbotResponse.textContent = "Typing...";
-  setTimeout(() => {
-    const answer = getNestaBotResponse(question);
-    chatbotResponse.textContent = answer;
-  }, 600); 
-  chatbotInput.value = "";
-}
-
-chatbotSubmit.addEventListener("click", handleChatbotSubmit);
-chatbotInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    handleChatbotSubmit();
-  }
-});
-
 // Back to Top Button
 const backToTopButton = document.getElementById("back-to-top");
 
@@ -250,7 +187,7 @@ backToTopButton.addEventListener("click", () => {
   });
 });
 
-// === Contact form submission handler ===
+//Contact form submission handler 
 document.getElementById("contact-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -270,7 +207,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
   this.reset();
 });
 
-// --- Visitor Counter ---
+// Visitor Counter
 const visitCountEl = document.getElementById('visit-count');
 if (visitCountEl) {
   let visits = localStorage.getItem('visitCount');
@@ -279,9 +216,9 @@ if (visitCountEl) {
   visitCountEl.textContent = visits;
 }
 
-// --- Audience Toggle Switch ---
+// Audience Toggle Switch
 const btnHigh = document.getElementById('toggle-high');
-const btnUni = document.getElementById('toggle-uni'); 
+const btnUni = document.getElementById('toggle-uni');
 const highContent = document.getElementById('high-content');
 const uniContent = document.getElementById('uni-content');
 
@@ -292,7 +229,6 @@ if (btnHigh && btnUni && highContent && uniContent) {
       btnUni.classList.remove('active');
       highContent.classList.add('active');
       uniContent.classList.remove('active');
-      // Delay hiding uniContent for smooth fade out
       setTimeout(() => {
         uniContent.style.display = 'none';
         highContent.style.display = 'block';
@@ -302,7 +238,6 @@ if (btnHigh && btnUni && highContent && uniContent) {
       btnHigh.classList.remove('active');
       uniContent.classList.add('active');
       highContent.classList.remove('active');
-      // Delay hiding highContent for smooth fade out
       setTimeout(() => {
         highContent.style.display = 'none';
         uniContent.style.display = 'block';
