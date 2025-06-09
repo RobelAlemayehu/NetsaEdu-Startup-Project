@@ -1,4 +1,3 @@
-
 // Smooth scroll for nav links
 document.querySelectorAll('nav a').forEach(link => {
   link.addEventListener('click', function (e) {
@@ -220,4 +219,52 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
   // Clear form
   this.reset();
 });
+// --- Visitor Counter ---
+const visitCountEl = document.getElementById('visit-count');
+if (visitCountEl) {
+  let visits = localStorage.getItem('visitCount');
+  visits = visits ? parseInt(visits) + 1 : 1;
+  localStorage.setItem('visitCount', visits);
+  visitCountEl.textContent = visits;
+}
+
+// --- Audience Toggle Switch ---
+const btnHigh = document.getElementById('toggle-high');
+const btnUni = document.getElementById('toggle-uni');
+const highContent = document.getElementById('high-content');
+const uniContent = document.getElementById('uni-content');
+
+if (btnHigh && btnUni && highContent && uniContent) {
+  function toggleAudience(toHigh) {
+    if (toHigh) {
+      btnHigh.classList.add('active');
+      btnUni.classList.remove('active');
+      highContent.classList.add('active');
+      uniContent.classList.remove('active');
+
+      // Swap display after transition
+      highContent.style.display = 'block';
+      setTimeout(() => {
+        uniContent.style.display = 'none';
+      }, 400);
+    } else {
+      btnUni.classList.add('active');
+      btnHigh.classList.remove('active');
+      uniContent.classList.add('active');
+      highContent.classList.remove('active');
+
+      uniContent.style.display = 'block';
+      setTimeout(() => {
+        highContent.style.display = 'none';
+      }, 400);
+    }
+  }
+
+  // Initial state
+  highContent.style.display = 'block';
+  uniContent.style.display = 'none';
+
+  btnHigh.addEventListener('click', () => toggleAudience(true));
+  btnUni.addEventListener('click', () => toggleAudience(false));
+}
 

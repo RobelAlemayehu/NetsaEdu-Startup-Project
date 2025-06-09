@@ -551,7 +551,6 @@ textarea {
   cursor: pointer;
   border-radius: 6px;
 }
-
 /* Back to Top */
 #back-to-top {
   position: fixed;
@@ -617,4 +616,29 @@ textarea {
 .popup.show {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
+}
+.audience-btn {
+  background-color: #f9f9f9;
+  border: 2px solid #395886;
+  color: #395886;
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
+  font-weight: 600;
+}
+.audience-btn.active {
+  background-color: #395886;
+  color: #fff;
+}
+.audience-content {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+  overflow: hidden;
+}
+.audience-content.active {
+  opacity: 1;
+  max-height: 300px; /* enough for content */
 }
